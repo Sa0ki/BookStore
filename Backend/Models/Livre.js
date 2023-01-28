@@ -7,7 +7,7 @@ const livreSchema = mongoose.Schema(
         isbn: String,
         auteur: String,
         editeur: String,
-        dateEdition: String,
+        dateEdition: Date,
         image: String,
         categorie: {
             type: mongoose.Types.ObjectId,
