@@ -1,6 +1,6 @@
 const Livre = require("../Models/Livre")
 
-const getLivres = async () => { return await Livre.find() }
+const getLivres = async () => { return await Livre.find().populate("categorie") }
 
 const getLivreById = async (id) => { return await Livre.findById(id) }
 
