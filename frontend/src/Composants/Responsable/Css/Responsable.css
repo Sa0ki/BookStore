@@ -12,15 +12,16 @@
 }
 
 .profilePic {
-    border-radius: 60%;
-    width: 150px;
-    height: 150px;
+  border-radius: 60%;
+  width: 150px;
+  height: 150px;
 }
-  
+ 
 .icon {
   width: 20px;
   height: 20px;
 }
+
 .email{
   width: 19px;
   height: 18px;

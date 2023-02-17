@@ -1,6 +1,5 @@
 import {useState, useEffect} from "react"
 import {NavLink} from "react-router-dom"
-import { Link } from "react-router-dom"
 import ServiceResponsable from "../../Services/ResponsableServices"
 
 //Componments of react bootstrap
@@ -8,7 +7,8 @@ import Table from "../../../node_modules/react-bootstrap/Table"
 import Button from "../../../node_modules/react-bootstrap/Button"
 //Componments of react bootstrap
 
-import "../../Css/Responsable.css"
+//Css file for responsable
+import "./Css/Responsable.css"
 
 function TousLesResponsables(){
 
@@ -25,9 +25,14 @@ function TousLesResponsables(){
         getResponsables()
     }
 
-    function saut(indice){
-        if((indice + 1) % 3 == 0)
-            return <br></br>
+    function displayImage(pic){
+        try{
+            let pp = require("./Images/" + pic)
+            return <img className="profilePic" src={require("./Images/"+pic)} alt="pic"/>
+        }catch(error){
+            pic="unknown.jpg"
+            return <img className="profilePic" src={require("./Images/unknown.jpg")} alt="pic"/>
+        }
     }
     
     useEffect(()=>{
@@ -47,7 +52,7 @@ function TousLesResponsables(){
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <img className="profilePic" src={require("./Images/" + r.image)} alt="pic"/>
+                                            {displayImage(r.image)}
                                         </td>
                                         <td></td> 
                                         <table>

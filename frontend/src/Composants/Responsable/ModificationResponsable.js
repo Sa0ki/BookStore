@@ -7,9 +7,14 @@ import Button from "../../../node_modules/react-bootstrap/Button"
 import Table from "../../../node_modules/react-bootstrap/Table"
 //Componments of react bootstrap
 
+
+//Css file for responsable
+import "./Css/Responsable.css"
+
 function ModificationResponsable(){
 
     const {id} = useParams()
+    const [touched, setTouched] = useState(false)
 
     const [nom, setNom] = useState("");
     const [prenom, setPrenom] = useState("");
@@ -31,6 +36,17 @@ function ModificationResponsable(){
         setImage(result.data.image)
     }
 
+    function displayImage(){
+        try{
+            let pp = require("./Images/" + image)
+            return <img className="profilePic" src={require("./Images/"+image)} alt="pic"/>
+        }catch(error){
+            if(touched == true && image == "")
+                setImage("unknown.jpg")
+            return <img className="profilePic" src={require("./Images/unknown.jpg")} alt="pic"/>
+        }
+    }
+
     useEffect(() => {
         getResponsableById()
     }, [])
@@ -44,20 +60,23 @@ function ModificationResponsable(){
 
     return (
         <center>
-            <h1>Formulaire</h1>
             <Form>
-                <Table>
+                <Table borderless>
                     <tbody>
+                    <tr><td><center><input type="text" id="_id" disabled="disabled" value={id}/></center></td></tr>
                     <tr><td><center><input type ="text" id="nom" onChange={(e)=>setNom(e.target.value)} placeholder="Nom" value={nom}/></center></td></tr>
                     <tr><td><center><input type ="text" id="prenom" onChange={(e)=>setPrenom(e.target.value)} placeholder="Prénom" value={prenom}/></center></td></tr>
                     <tr><td><center><input type ="email" id="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Email" value={email}/></center></td></tr>
                     <tr><td><center><input type ="text" id="phone" onChange={(e)=>setPhone(e.target.value)} placeholder="Téléphone" value={phone}/></center></td></tr>
-                    <tr><td><center><input type ="password" id="motDePasse" onChange={(e)=>setMotDePasse(e.target.value)} placeholder="Mot de passe" value={motDePasse}/></center></td></tr>
-                    <tr><td><center><input type ="text" id="image" onChange={(e)=>setImage(e.target.value)} placeholder="Image" value={image}/></center></td></tr>
-                    <tr><center><Button onClick={(e)=>Submit(e)}>Modifier</Button></center></tr>
+                    <tr><td><center><input type ="password" id="motDePasse" disabled="disabled" onChange={(e)=>setMotDePasse(e.target.value)} placeholder="Mot de passe" value={motDePasse}/></center></td></tr>
+                    <tr><td><center><input type ="text" id="image" onChange={(e)=>setImage(e.target.value)} onBlur={()=>setTouched(true)} placeholder="Image" value={image}/></center></td></tr>
+                    <tr><center><Button variant="success" onClick={(e)=>Submit(e)}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Modifier&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button></center></tr>
                     </tbody>
                 </Table>   
             </Form>
+           {
+            displayImage()
+           }
         </center>
     );
 }

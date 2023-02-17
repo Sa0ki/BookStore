@@ -27,17 +27,16 @@ function FormulaireResponsable(){
 
     return (
         <center>
-            <h1>Formulaire</h1>
             <Form>
-                <Table>
+                <Table borderless>
                     <tbody>
                     <tr><td><center><input type ="text" id="nom" onChange={(e)=>setNom(e.target.value)} placeholder="Nom"/></center></td></tr>
                     <tr><td><center><input type ="text" id="prenom" onChange={(e)=>setPrenom(e.target.value)} placeholder="Prénom"/></center></td></tr>
                     <tr><td><center><input type ="email" id="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Email"/></center></td></tr>
                     <tr><td><center><input type ="text" id="phone" onChange={(e)=>setPhone(e.target.value)} placeholder="Téléphone"/></center></td></tr>
                     <tr><td><center><input type ="password" id="motDePasse" onChange={(e)=>setMotDePasse(e.target.value)} placeholder="Mot de passe"/></center></td></tr>
-                    <tr><td><center><input type ="text" id="image" onChange={(e)=>setImage(e.target.value)} placeholder="Image"/></center></td></tr>
-                    <tr><center><Button onClick={(e)=>Submit(e)}>Ajouter</Button></center></tr>
+                    <tr><td><center><input type ="text" id="image" onChange={(e)=>setImage(e.target.value)} placeholder="Nom de l'image"/></center></td></tr>
+                    <tr><center><Button onClick={(e)=>Submit(e)}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ajouter&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button></center></tr>
                     </tbody>
                 </Table>   
             </Form>
