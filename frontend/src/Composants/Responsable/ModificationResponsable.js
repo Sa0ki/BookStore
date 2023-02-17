@@ -38,10 +38,9 @@ function ModificationResponsable(){
 
     function displayImage(){
         try{
-            let pp = require("./Images/" + image)
             return <img className="profilePic" src={require("./Images/"+image)} alt="pic"/>
         }catch(error){
-            if(touched == true && image == "")
+            if(touched == false && image == "")
                 setImage("unknown.jpg")
             return <img className="profilePic" src={require("./Images/unknown.jpg")} alt="pic"/>
         }
@@ -60,23 +59,35 @@ function ModificationResponsable(){
 
     return (
         <center>
+            {displayImage()}
+            <br/>
+            <br/>
             <Form>
-                <Table borderless>
+                <Table borderless size="sm">
                     <tbody>
-                    <tr><td><center><input type="text" id="_id" disabled="disabled" value={id}/></center></td></tr>
-                    <tr><td><center><input type ="text" id="nom" onChange={(e)=>setNom(e.target.value)} placeholder="Nom" value={nom}/></center></td></tr>
-                    <tr><td><center><input type ="text" id="prenom" onChange={(e)=>setPrenom(e.target.value)} placeholder="Prénom" value={prenom}/></center></td></tr>
-                    <tr><td><center><input type ="email" id="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Email" value={email}/></center></td></tr>
-                    <tr><td><center><input type ="text" id="phone" onChange={(e)=>setPhone(e.target.value)} placeholder="Téléphone" value={phone}/></center></td></tr>
-                    <tr><td><center><input type ="password" id="motDePasse" disabled="disabled" onChange={(e)=>setMotDePasse(e.target.value)} placeholder="Mot de passe" value={motDePasse}/></center></td></tr>
-                    <tr><td><center><input type ="text" id="image" onChange={(e)=>setImage(e.target.value)} onBlur={()=>setTouched(true)} placeholder="Image" value={image}/></center></td></tr>
-                    <tr><center><Button variant="success" onClick={(e)=>Submit(e)}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Modifier&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button></center></tr>
+                        <tr>
+                            <td><center><input type="text" id="_id" disabled="disabled" value={id}/>&nbsp;&nbsp;&nbsp;
+                            <input type ="password" id="motDePasse" disabled="disabled" onChange={(e)=>setMotDePasse(e.target.value)} placeholder="Mot de passe" value={motDePasse}/></center></td>
+                        </tr>
+                        <br/>
+                        <tr>
+                            <td><center><input type ="text" id="nom" onChange={(e)=>setNom(e.target.value)} placeholder="Nom" value={nom}/>&nbsp;&nbsp;&nbsp;
+                            <input type ="text" id="prenom" onChange={(e)=>setPrenom(e.target.value)} placeholder="Prénom" value={prenom}/></center></td>
+                        </tr>
+                        <br/>
+                        <tr>
+                            <td><center><input type ="email" id="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Email" value={email}/>&nbsp;&nbsp;&nbsp;
+                            <input type ="text" id="phone" onChange={(e)=>setPhone(e.target.value)} placeholder="Téléphone" value={phone}/></center></td>
+                        </tr>
+                        <br/>
+                        <tr><td><center><input type ="text" id="image" onChange={(e)=>setImage(e.target.value)} onBlur={()=>setTouched(false)} onFocus={()=>setTouched(true)} placeholder="Image" value={image}/></center></td></tr>
+                        <br/>
+                        <tr>
+                            <td><center><Button variant="success" onClick={(e)=>Submit(e)}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Modifier&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button></center></td>
+                        </tr>
                     </tbody>
                 </Table>   
             </Form>
-           {
-            displayImage()
-           }
         </center>
     );
 }
