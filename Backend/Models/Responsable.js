@@ -5,6 +5,7 @@ const responsableSchema = mongoose.Schema(
         nom: String,
         prenom: String,
         email: String,
+        phone: String,
         motDePasse: String,
         image: String
     }   

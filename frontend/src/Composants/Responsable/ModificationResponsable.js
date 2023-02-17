@@ -14,6 +14,7 @@ function ModificationResponsable(){
     const [nom, setNom] = useState("");
     const [prenom, setPrenom] = useState("");
     const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("")
     const [motDePasse, setMotDePasse] = useState("")
     const [image, setImage] = useState("")
 
@@ -25,6 +26,7 @@ function ModificationResponsable(){
         setNom(result.data.nom)
         setPrenom(result.data.prenom)
         setEmail(result.data.email)
+        setPhone(result.data.phone)
         setMotDePasse(result.data.motDePasse)
         setImage(result.data.image)
     }
@@ -35,7 +37,7 @@ function ModificationResponsable(){
     
     async function Submit(e){   
         e.preventDefault();
-        const r = {"_id": id, "nom": nom, "prenom": prenom, "email": email, "motDePasse": motDePasse, "image": image}
+        const r = {"_id": id, "nom": nom, "prenom": prenom, "email": email, "phone": phone, "motDePasse": motDePasse, "image": image}
         await ServiceResponsable.updateResponsable(r)
         navigate("/master/responsable")
     }
@@ -49,6 +51,7 @@ function ModificationResponsable(){
                     <tr><td><center><input type ="text" id="nom" onChange={(e)=>setNom(e.target.value)} placeholder="Nom" value={nom}/></center></td></tr>
                     <tr><td><center><input type ="text" id="prenom" onChange={(e)=>setPrenom(e.target.value)} placeholder="Prénom" value={prenom}/></center></td></tr>
                     <tr><td><center><input type ="email" id="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Email" value={email}/></center></td></tr>
+                    <tr><td><center><input type ="text" id="phone" onChange={(e)=>setPhone(e.target.value)} placeholder="Téléphone" value={phone}/></center></td></tr>
                     <tr><td><center><input type ="password" id="motDePasse" onChange={(e)=>setMotDePasse(e.target.value)} placeholder="Mot de passe" value={motDePasse}/></center></td></tr>
                     <tr><td><center><input type ="text" id="image" onChange={(e)=>setImage(e.target.value)} placeholder="Image" value={image}/></center></td></tr>
                     <tr><center><Button onClick={(e)=>Submit(e)}>Modifier</Button></center></tr>

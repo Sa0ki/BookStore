@@ -42,30 +42,58 @@ function TousLesResponsables(){
         <div className="flex-container">
                     {
                         responsables.map((r, i) =>
-                       <div className="flex-child">
-                        <center>
-                        <table>
-                            <tbody>
-                            <center>
-                            <tr><td><img src={require("./Images/" + r.image)} alt="Avatar"/></td></tr>
-                            <tr><td><h5>{r.prenom + " " + r.nom}</h5></td></tr>
-                            <tr><td><h5>{r.email}</h5></td></tr>
-                            </center>
-                            </tbody>
-                            <thead>
-                            <th>
-                                    <td>
-                                    <NavLink to={`/master/responsable/update/${r._id}`} style={isActive => ({textDecoration: "none", color: "white"})}>
-                            <Button variant = "success">Modifier</Button></NavLink></td>
-                            <td>   
-                                <Button variant="danger" onClick={()=>deleteResponsable(r._id)}>Supprimer</Button>
-                                    </td>
-                                </th>   
-                            </thead>         
-                        </table>   
-                        </center> 
-                        </div>
-                    )
+                            <div className="flex-child"> 
+                               <Table borderless>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <img className="profilePic" src={require("./Images/" + r.image)} alt="pic"/>
+                                        </td>
+                                        <td></td> 
+                                        <table>
+                                           <br/><br/> 
+                                           <tbody>
+                                            <tr>
+                                                <td>
+                                                    <img className="icon" src={require("./Images/person.png")} alt="icon"/>
+                                                </td>
+                                                <td>
+                                                    <h8>{r.nom}&nbsp;{r.prenom}</h8>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img className="icon email" src={require("./Images/email.png")} alt="icon"/>
+                                                </td>
+                                                <td>
+                                                    <h8>{r.email}</h8>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img className="icon phone" src={require("./Images/phone.png")} alt="icon"/>
+                                                </td>
+                                                <td>
+                                                    <h8>{r.phone}</h8>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </tr>
+                                    <center>
+                                    <tr>
+                                        <td>
+                                        <NavLink to={`/master/responsable/update/${r._id}`} style={isActive => ({textDecoration: "none", color: "white"})}>
+                                        <Button variant = "success" size="sm">Modifier</Button>
+                                        </NavLink>&nbsp;
+                                        <Button variant="danger" size="sm" onClick={()=>deleteResponsable(r._id)}>Supprimer</Button>
+                                        </td>
+                                    </tr>
+                                    </center>
+                                </tbody>
+                               </Table>
+                            </div>
+                        )
                     }
         </div>
         </center>
