@@ -8,6 +8,8 @@ import Table from "../../../node_modules/react-bootstrap/Table"
 import Button from "../../../node_modules/react-bootstrap/Button"
 //Componments of react bootstrap
 
+import "../../Css/Responsable.css"
+
 function TousLesResponsables(){
 
     const [responsables, setResponsables] = useState([]);
@@ -22,47 +24,52 @@ function TousLesResponsables(){
         await ServiceResponsable.deleteResponsable(id)
         getResponsables()
     }
+
+    function saut(indice){
+        if((indice + 1) % 3 == 0)
+            return <br></br>
+    }
     
     useEffect(()=>{
         getResponsables();
     }, []);
 
     return (
-        <div>
-            <center>
-                <h2><Link to={"/master/responsable/ajouter"}>Ajouter un responsable</Link></h2>
-                <Table condensed borderded hover variant="dark">
-                    <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nom</th>
-                        <th>Prénom</th>
-                        <th>Email</th>
-                        <th><center>Action</center></th>
-                    </tr>
-                    </thead>
-                    <tbody>
+        <>
+        <center>
+        <Button><NavLink to={"/master/responsable/ajouter"} style={isActive => ({textDecoration: "none", color: "white"})}>Nouveau</NavLink></Button>
+        <br/><br/><br/>
+        <div className="flex-container">
                     {
-                        responsables.map((r, i)=>
-                                <tr>
-                                    <td>{i+1}</td>
-                                    <td>{r.nom}</td>
-                                    <td>{r.prenom}</td>
-                                    <td>{r.email}</td>
+                        responsables.map((r, i) =>
+                       <div className="flex-child">
+                        <center>
+                        <table>
+                            <tbody>
+                            <center>
+                            <tr><td><img src={require("./Images/" + r.image)} alt="Avatar"/></td></tr>
+                            <tr><td><h5>{r.prenom + " " + r.nom}</h5></td></tr>
+                            <tr><td><h5>{r.email}</h5></td></tr>
+                            </center>
+                            </tbody>
+                            <thead>
+                            <th>
                                     <td>
-                                        <center>
-                                            <Button variant="danger" onClick={()=>deleteResponsable(r._id)}>Supprimer</Button>
-                                            &nbsp;&nbsp;&nbsp;<Button variant = "success"><NavLink to={`/products/edit/${r._id}`} 
-                                            style={isActive => ({textDecoration: "none", color: "white"})}>Modifier</NavLink></Button>
-                                        </center>
+                                    <NavLink to={`/master/responsable/update/${r._id}`} style={isActive => ({textDecoration: "none", color: "white"})}>
+                            <Button variant = "success">Modifier</Button></NavLink></td>
+                            <td>   
+                                <Button variant="danger" onClick={()=>deleteResponsable(r._id)}>Supprimer</Button>
                                     </td>
-                                </tr>
-                        )
+                                </th>   
+                            </thead>         
+                        </table>   
+                        </center> 
+                        </div>
+                    )
                     }
-                    </tbody>
-                </Table>
-            </center>
         </div>
+        </center>
+        </>
     )
 }
 

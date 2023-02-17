@@ -1,6 +1,7 @@
 import {Route, Routes} from "react-router-dom"
 import TousLesResponsables from "../Composants/Responsable/TousLesResponsables"
 import FormulaireResponsable from "../Composants/Responsable/FormulaireResponsable"
+import ModificationResponsable from "../Composants/Responsable/ModificationResponsable"
 import TousLesLivres from "../Composants/Livre/TousLesLivres"
 import FormulaireLivre from "../Composants/Livre/FormulaireLivre"
 import ToutesLesCategories from "../Composants/Categorie/ToutesLesCategories"
@@ -13,6 +14,7 @@ function Paths(){
             <Route path={"master"}>
                 <Route path={"responsable"} element={<TousLesResponsables/>}></Route>
                 <Route path={"responsable/ajouter"} element={<FormulaireResponsable/>}></Route>
+                <Route path={"responsable/update/:id"} element={<ModificationResponsable/>}></Route>
             </Route>
 
             <Route path={"responsable"}>
