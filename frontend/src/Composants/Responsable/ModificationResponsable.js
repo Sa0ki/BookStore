@@ -54,6 +54,11 @@ function ModificationResponsable(){
         e.preventDefault();
         const r = {"_id": id, "nom": nom, "prenom": prenom, "email": email, "phone": phone, "motDePasse": motDePasse, "image": image}
         await ServiceResponsable.updateResponsable(r)
+        navigate(`/master/responsable/get/${r._id}`)
+    }
+
+    function Retour(e){
+        e.preventDefault();
         navigate("/master/responsable")
     }
 
@@ -84,6 +89,9 @@ function ModificationResponsable(){
                         <br/>
                         <tr>
                             <td><center><Button variant="success" onClick={(e)=>Submit(e)}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Modifier&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button></center></td>
+                        </tr>
+                        <tr>
+                            <td><center><Button variant="dark" onClick={(e)=>Retour(e)}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Retour&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button></center></td>
                         </tr>
                     </tbody>
                 </Table>   
