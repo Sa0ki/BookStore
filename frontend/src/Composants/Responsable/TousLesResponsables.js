@@ -27,11 +27,11 @@ function TousLesResponsables(){
 
     function displayImage(pic){
         try{
-            let pp = require("./Images/" + pic)
-            return <img className="profilePic" src={require("./Images/"+pic)} alt="pic"/>
+            let pp = require("./Images/Responsables/" + pic)
+            return <img className="profilePic" src={require("./Images/Responsables/"+pic)} alt="pic"/>
         }catch(error){
             pic="unknown.jpg"
-            return <img className="profilePic" src={require("./Images/unknown.jpg")} alt="pic"/>
+            return <img className="profilePic" src={require("./Images/Responsables/unknown.jpg")} alt="pic"/>
         }
     }
     
@@ -56,15 +56,15 @@ function TousLesResponsables(){
                                            <br/><br/> 
                                            <tbody>
                                             <tr>
-                                                <td><img className="icon" src={require("./Images/person.png")} alt="icon"/></td>
+                                                <td><img className="icon" src={require("./Images/Icons/person.png")} alt="icon"/></td>
                                                 <td><h8>{r.nom}&nbsp;{r.prenom}</h8></td>
                                             </tr>
                                             <tr>
-                                                <td><img className="icon email" src={require("./Images/email.png")} alt="icon"/></td>
+                                                <td><img className="icon email" src={require("./Images/Icons/email.png")} alt="icon"/></td>
                                                 <td><h8>{r.email}</h8></td>
                                             </tr>
                                             <tr>
-                                                <td><img className="icon phone" src={require("./Images/phone.png")} alt="icon"/></td>
+                                                <td><img className="icon phone" src={require("./Images/Icons/phone.png")} alt="icon"/></td>
                                                 <td><h8>{r.phone}</h8></td>
                                             </tr>
                                             </tbody>

@@ -22,11 +22,11 @@ function FormulaireResponsable(){
 
     function displayImage(){
         try{
-            return <img className="profilePic" src={require("./Images/"+image)} alt="pic"/>
+            return <img className="profilePic" src={require("./Images/Responsables/"+image)} alt="pic"/>
         }catch(error){
             if(touched == false && image == "")
                 setImage("unknown.jpg")
-            return <img className="profilePic" src={require("./Images/unknown.jpg")} alt="pic"/>
+            return <img className="profilePic" src={require("./Images/Responsables/unknown.jpg")} alt="pic"/>
         }
     }
     
