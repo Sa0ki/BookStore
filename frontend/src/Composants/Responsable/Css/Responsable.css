@@ -1,6 +1,7 @@
 .flex-container {
   display: flex;
   flex-wrap: wrap;
+  background-color: rgba(96, 137, 199, 0.404);
 }
 
 .flex-child {
@@ -15,6 +16,8 @@
   border-radius: 60%;
   width: 150px;
   height: 150px;
+  border: 10px solid rgb(120, 133, 121);
+  border-width: 2px;
 }
  
 .icon {

@@ -40,7 +40,6 @@ function TousLesResponsables(){
     }, []);
 
     return (
-        <>
         <center>
         <Button><NavLink to={"/master/responsable/ajouter"} style={isActive => ({textDecoration: "none", color: "white"})}>Nouveau</NavLink></Button>
         <br/><br/><br/>
@@ -51,36 +50,22 @@ function TousLesResponsables(){
                                <Table borderless>
                                 <tbody>
                                     <tr>
-                                        <td>
-                                            {displayImage(r.image)}
-                                        </td>
+                                        <td>{displayImage(r.image)}</td>
                                         <td></td> 
                                         <table>
                                            <br/><br/> 
                                            <tbody>
                                             <tr>
-                                                <td>
-                                                    <img className="icon" src={require("./Images/person.png")} alt="icon"/>
-                                                </td>
-                                                <td>
-                                                    <h8>{r.nom}&nbsp;{r.prenom}</h8>
-                                                </td>
+                                                <td><img className="icon" src={require("./Images/person.png")} alt="icon"/></td>
+                                                <td><h8>{r.nom}&nbsp;{r.prenom}</h8></td>
                                             </tr>
                                             <tr>
-                                                <td>
-                                                    <img className="icon email" src={require("./Images/email.png")} alt="icon"/>
-                                                </td>
-                                                <td>
-                                                    <h8>{r.email}</h8>
-                                                </td>
+                                                <td><img className="icon email" src={require("./Images/email.png")} alt="icon"/></td>
+                                                <td><h8>{r.email}</h8></td>
                                             </tr>
                                             <tr>
-                                                <td>
-                                                    <img className="icon phone" src={require("./Images/phone.png")} alt="icon"/>
-                                                </td>
-                                                <td>
-                                                    <h8>{r.phone}</h8>
-                                                </td>
+                                                <td><img className="icon phone" src={require("./Images/phone.png")} alt="icon"/></td>
+                                                <td><h8>{r.phone}</h8></td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -102,7 +87,6 @@ function TousLesResponsables(){
                     }
         </div>
         </center>
-        </>
     )
 }
 
