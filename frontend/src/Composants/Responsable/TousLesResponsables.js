@@ -106,7 +106,7 @@ function TousLesResponsables(){
                                     <center>
                                     <tr>
                                         <td>
-                                        <div className="more" onClick={()=>More(r._id)}>{displayMore(r._id)}</div>
+                                        <div onClick={()=>More(r._id)}>{displayMore(r._id)}</div>
                                         </td>
                                     </tr>
                                     </center>
