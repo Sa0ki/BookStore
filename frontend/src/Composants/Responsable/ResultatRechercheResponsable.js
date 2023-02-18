@@ -11,10 +11,9 @@ import Table from "../../../node_modules/react-bootstrap/Table"
 //Css file for responsable
 import "./Css/Responsable.css"
 
-function ModificationResponsable(){
+function ResultatRechercheResponsable(){
 
     const {id} = useParams()
-    const [touched, setTouched] = useState(false)
 
     const [nom, setNom] = useState("");
     const [prenom, setPrenom] = useState("");
@@ -40,8 +39,6 @@ function ModificationResponsable(){
         try{
             return <img className="profilePic" src={require("./Images/Responsables/"+image)} alt="pic"/>
         }catch(error){
-            if(touched == false && image == "")
-                setImage("unknown.jpg")
             return <img className="profilePic" src={require("./Images/Responsables/unknown.jpg")} alt="pic"/>
         }
     }
@@ -52,8 +49,6 @@ function ModificationResponsable(){
     
     async function Submit(e){        
         e.preventDefault();
-        const r = {"_id": id, "nom": nom, "prenom": prenom, "email": email, "phone": phone, "motDePasse": motDePasse, "image": image}
-        await ServiceResponsable.updateResponsable(r)
         navigate("/master/responsable")
     }
 
@@ -67,23 +62,23 @@ function ModificationResponsable(){
                     <tbody>
                         <tr>
                             <td><center><input type="text" id="_id" disabled="disabled" value={id}/>&nbsp;&nbsp;&nbsp;
-                            <input type ="password" id="motDePasse" disabled="disabled" onChange={(e)=>setMotDePasse(e.target.value)} placeholder="Mot de passe" value={motDePasse}/></center></td>
+                            <input type ="password" id="motDePasse" disabled="disabled" value={motDePasse}/></center></td>
                         </tr>
                         <br/>
                         <tr>
-                            <td><center><input type ="text" id="nom" onChange={(e)=>setNom(e.target.value)} placeholder="Nom" value={nom} required/>&nbsp;&nbsp;&nbsp;
-                            <input type ="text" id="prenom" onChange={(e)=>setPrenom(e.target.value)} placeholder="Prénom" value={prenom} required/></center></td>
+                            <td><center><input type ="text" id="nom" disabled="disabled" value={nom} required/>&nbsp;&nbsp;&nbsp;
+                            <input type ="text" id="prenom" disabled="disabled"value={prenom} required/></center></td>
                         </tr>
                         <br/>
                         <tr>
-                            <td><center><input type ="email" id="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Email" value={email} required/>&nbsp;&nbsp;&nbsp;
-                            <input type ="text" id="phone" onChange={(e)=>setPhone(e.target.value)} placeholder="Téléphone" value={phone} required/></center></td>
+                            <td><center><input type ="email" id="email" disabled="disabled" value={email} required/>&nbsp;&nbsp;&nbsp;
+                            <input type ="text" id="phone" disabled="disabled"value={phone} required/></center></td>
                         </tr>
                         <br/>
-                        <tr><td><center><input type ="text" id="image" onChange={(e)=>setImage(e.target.value)} onBlur={()=>setTouched(false)} onFocus={()=>setTouched(true)} placeholder="Image" value={image}/></center></td></tr>
+                        <tr><td><center><input type ="text" id="image" disabled="disabled" value={image}/></center></td></tr>
                         <br/>
                         <tr>
-                            <td><center><Button variant="success" onClick={(e)=>Submit(e)}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Modifier&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button></center></td>
+                            <td><center><Button variant="dark" onClick={(e)=>Submit(e)}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Retour&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button></center></td>
                         </tr>
                     </tbody>
                 </Table>   
@@ -92,4 +87,4 @@ function ModificationResponsable(){
     );
 }
 
-export default ModificationResponsable;
+export default ResultatRechercheResponsable;

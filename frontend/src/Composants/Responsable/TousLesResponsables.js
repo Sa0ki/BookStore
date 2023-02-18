@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react"
-import {NavLink} from "react-router-dom"
+import {NavLink, useNavigate} from "react-router-dom"
 import ServiceResponsable from "../../Services/ResponsableServices"
 
 //Componments of react bootstrap
@@ -13,6 +13,10 @@ import "./Css/Responsable.css"
 function TousLesResponsables(){
 
     const [responsables, setResponsables] = useState([]);
+    const [recherche, setRecherche] = useState("")
+    const [resultat, setResultat] = useState(null)
+
+    const navigate = useNavigate()
 
      async function getResponsables(){
         const result = await ServiceResponsable.getResponsables()
@@ -34,6 +38,16 @@ function TousLesResponsables(){
             return <img className="profilePic" src={require("./Images/Responsables/unknown.jpg")} alt="pic"/>
         }
     }
+
+    function rechercherResponsable(e){
+        e.preventDefault();
+        let r = responsables.find( r => (r.nom + r.prenom).toLowerCase() == recherche.replace(/\s/g, '').toLowerCase())
+        console.log(recherche.replace(/\s/g, '').toLowerCase())
+        if(r != undefined)
+            navigate(`/master/responsable/get/${r._id}`)
+        else
+            setResultat(<h4>Aucun résultat.</h4>)
+    }
     
     useEffect(()=>{
         getResponsables();
@@ -41,7 +55,11 @@ function TousLesResponsables(){
 
     return (
         <center>
-        <Button><NavLink to={"/master/responsable/ajouter"} style={isActive => ({textDecoration: "none", color: "white"})}>Nouveau</NavLink></Button>
+            <input type="text" size="28" placeholder="Nom et prénom du responsable" onChange={(e)=>{setRecherche(e.target.value)}} onBlur={()=>setResultat(null)}/>&nbsp;&nbsp;
+            <Button variant="warning" onClick={(e)=>rechercherResponsable(e)}>Rechercher</Button>
+            {resultat}
+        <br/><br/>
+        <Button variant="primary"><NavLink to={"/master/responsable/ajouter"} style={isActive => ({textDecoration: "none", color: "white"})}>Nouveau</NavLink></Button>
         <br/><br/><br/>
         <div className="flex-container">
                     {
@@ -74,9 +92,9 @@ function TousLesResponsables(){
                                     <tr>
                                         <td>
                                         <NavLink to={`/master/responsable/update/${r._id}`} style={isActive => ({textDecoration: "none", color: "white"})}>
-                                        <Button variant = "success" size="sm">Modifier</Button>
+                                        <Button variant = "outline-success" size="sm">Modifier</Button>
                                         </NavLink>&nbsp;
-                                        <Button variant="danger" size="sm" onClick={()=>deleteResponsable(r._id)}>Supprimer</Button>
+                                        <Button variant="outline-danger" size="sm" onClick={()=>deleteResponsable(r._id)}>Supprimer</Button>
                                         </td>
                                     </tr>
                                     </center>

@@ -7,12 +7,14 @@ import FormulaireLivre from "../Composants/Livre/FormulaireLivre"
 import ToutesLesCategories from "../Composants/Categorie/ToutesLesCategories"
 import FormulaireCategorie from "../Composants/Categorie/FormulaireCategorie"
 import Acceuil from "../Composants/Visiteur/Acceuil";
+import ResultatRechercheResponsable from "../Composants/Responsable/ResultatRechercheResponsable"
 
 function Paths(){
     return (
         <Routes>
             <Route path={"master"}>
                 <Route path={"responsable"} element={<TousLesResponsables/>}></Route>
+                <Route path={"responsable/get/:id"} element={<ResultatRechercheResponsable/>}></Route>
                 <Route path={"responsable/ajouter"} element={<FormulaireResponsable/>}></Route>
                 <Route path={"responsable/update/:id"} element={<ModificationResponsable/>}></Route>
             </Route>
