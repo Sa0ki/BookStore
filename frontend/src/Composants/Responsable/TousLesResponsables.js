@@ -30,14 +30,26 @@ function TousLesResponsables(){
         getResponsables()
     }
 
-    function displayImage(pic){
+    function displayProfilePic(pic){
         try{
-            let pp = require("./Images/Responsables/" + pic)
             return <img className="profilePic" src={require("./Images/Responsables/"+pic)} alt="pic"/>
         }catch(error){
             pic="unknown.jpg"
             return <img className="profilePic" src={require("./Images/Responsables/unknown.jpg")} alt="pic"/>
         }
+    }
+
+    function displayMore(id){
+        try{
+            return <img className="more" src={require("./Images/Icons/more.png")} alt="pic"/>
+        }catch(error){
+            pic="unknown.jpg"
+            return <img className="more" src={require("./Images/Responsables/unknown.jpg")} alt="pic"/>
+        }
+    }
+
+    function More(id){
+        navigate(`/master/responsable/get/${id}`)
     }
 
     function rechercherResponsable(e){
@@ -49,8 +61,7 @@ function TousLesResponsables(){
             setTimer(true)
             setTimeout(()=>setTimer(false), 2000)
             setResultat(<h4>Aucun résultat.</h4>)
-        }
-            
+        } 
     }
     
     useEffect(()=>{
@@ -72,13 +83,13 @@ function TousLesResponsables(){
                                <Table borderless>
                                 <tbody>
                                     <tr>
-                                        <td>{displayImage(r.image)}</td>
+                                        <td>{displayProfilePic(r.image)}</td>
                                         <td></td> 
                                         <table>
                                            <br/><br/> 
                                            <tbody>
                                             <tr>
-                                                <td><img className="icon" src={require("./Images/Icons/person.png")} alt="icon"/></td>
+                                                <td><img className="person" src={require("./Images/Icons/person.png")} alt="icon"/></td>
                                                 <td><h8>{r.nom}&nbsp;{r.prenom}</h8></td>
                                             </tr>
                                             <tr>
@@ -95,10 +106,7 @@ function TousLesResponsables(){
                                     <center>
                                     <tr>
                                         <td>
-                                        <NavLink to={`/master/responsable/update/${r._id}`} style={isActive => ({textDecoration: "none", color: "white"})}>
-                                        <Button variant = "outline-success" size="sm">Modifier</Button>
-                                        </NavLink>&nbsp;
-                                        <Button variant="outline-danger" size="sm" onClick={()=>deleteResponsable(r._id)}>Supprimer</Button>
+                                        <div className="more" onClick={()=>More(r._id)}>{displayMore(r._id)}</div>
                                         </td>
                                     </tr>
                                     </center>

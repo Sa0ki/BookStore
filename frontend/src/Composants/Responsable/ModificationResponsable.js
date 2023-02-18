@@ -59,7 +59,7 @@ function ModificationResponsable(){
 
     function Retour(e){
         e.preventDefault();
-        navigate("/master/responsable")
+        navigate(`/master/responsable/get/${id}`)
     }
 
     return (
