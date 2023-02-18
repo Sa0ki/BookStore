@@ -9,6 +9,8 @@ import Table from "../../../node_modules/react-bootstrap/Table"
 
 function FormulaireResponsable(){
 
+    const [touched, setTouched] = useState(false)
+
     const [nom, setNom] = useState("");
     const [prenom, setPrenom] = useState("");
     const [email, setEmail] = useState("");
@@ -17,6 +19,16 @@ function FormulaireResponsable(){
     const [image, setImage] = useState("")
 
     const navigate = useNavigate()
+
+    function displayImage(){
+        try{
+            return <img className="profilePic" src={require("./Images/"+image)} alt="pic"/>
+        }catch(error){
+            if(touched == false && image == "")
+                setImage("unknown.jpg")
+            return <img className="profilePic" src={require("./Images/unknown.jpg")} alt="pic"/>
+        }
+    }
     
     async function Submit(e){   
         e.preventDefault();
@@ -27,16 +39,31 @@ function FormulaireResponsable(){
 
     return (
         <center>
+            {displayImage()}
+            <br/>
+            <br/>
             <Form>
-                <Table borderless>
+                <Table borderless size="sm">
                     <tbody>
-                    <tr><td><center><input type ="text" id="nom" onChange={(e)=>setNom(e.target.value)} placeholder="Nom"/></center></td></tr>
-                    <tr><td><center><input type ="text" id="prenom" onChange={(e)=>setPrenom(e.target.value)} placeholder="Prénom"/></center></td></tr>
-                    <tr><td><center><input type ="email" id="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Email"/></center></td></tr>
-                    <tr><td><center><input type ="text" id="phone" onChange={(e)=>setPhone(e.target.value)} placeholder="Téléphone"/></center></td></tr>
-                    <tr><td><center><input type ="password" id="motDePasse" onChange={(e)=>setMotDePasse(e.target.value)} placeholder="Mot de passe"/></center></td></tr>
-                    <tr><td><center><input type ="text" id="image" onChange={(e)=>setImage(e.target.value)} placeholder="Nom de l'image"/></center></td></tr>
-                    <tr><center><Button onClick={(e)=>Submit(e)}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ajouter&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button></center></tr>
+                        <tr>
+                            <td><center><input type ="text" id="nom" onChange={(e)=>setNom(e.target.value)} placeholder="Nom" value={nom} required/>&nbsp;&nbsp;&nbsp;
+                            <input type ="text" id="prenom" onChange={(e)=>setPrenom(e.target.value)} placeholder="Prénom" value={prenom} required/></center></td>
+                        </tr>
+                        <br/>
+                        <tr>
+                            <td><center><input type ="password" id="motDePasse" onChange={(e)=>setMotDePasse(e.target.value)} placeholder="Mot de passe" value={motDePasse}/></center></td>
+                        </tr>
+                        <br/>
+                        <tr>
+                            <td><center><input type ="email" id="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Email" value={email} required/>&nbsp;&nbsp;&nbsp;
+                            <input type ="text" id="phone" onChange={(e)=>setPhone(e.target.value)} placeholder="Téléphone" value={phone} required/></center></td>
+                        </tr>
+                        <br/>
+                        <tr><td><center><input type ="text" id="image" onChange={(e)=>setImage(e.target.value)} onBlur={()=>setTouched(false)} onFocus={()=>setTouched(true)} placeholder="Image" value={image}/></center></td></tr>
+                        <br/>
+                        <tr>
+                            <td><center><Button variant="primary" onClick={(e)=>Submit(e)}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ajouter&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button></center></td>
+                        </tr>
                     </tbody>
                 </Table>   
             </Form>
