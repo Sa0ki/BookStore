@@ -29,6 +29,11 @@ function FormulaireResponsable(){
             return <img className="profilePic" src={require("./Images/Responsables/unknown.jpg")} alt="pic"/>
         }
     }
+
+    function Retour(e){
+        e.preventDefault()
+        navigate("/master/responsable")
+    }
     
     async function Submit(e){   
         e.preventDefault();
@@ -63,6 +68,9 @@ function FormulaireResponsable(){
                         <br/>
                         <tr>
                             <td><center><Button variant="primary" onClick={(e)=>Submit(e)}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ajouter&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button></center></td>
+                        </tr>
+                        <tr>
+                            <td><center><Button variant="dark" onClick={(e)=>Retour(e)}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Retour&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button></center></td>
                         </tr>
                     </tbody>
                 </Table>   

@@ -1,6 +1,7 @@
 import ServiceResponsable from "../../Services/ResponsableServices";
 import {useEffect, useState} from "react";
-import {useNavigate, useParams} from "react-router-dom";
+import {useNavigate, NavLink, useParams} from "react-router-dom";
+
 //Componments of react bootstrap
 import Form from "../../../node_modules/react-bootstrap/Form"
 import Button from "../../../node_modules/react-bootstrap/Button"
@@ -43,6 +44,11 @@ function ResultatRechercheResponsable(){
         }
     }
 
+    async function deleteResponsable(id){
+        await ServiceResponsable.deleteResponsable(id)
+        navigate("/master/responsable")
+    }
+
     useEffect(() => {
         getResponsableById()
     }, [])
@@ -77,9 +83,21 @@ function ResultatRechercheResponsable(){
                         <br/>
                         <tr><td><center><input type ="text" id="image" disabled="disabled" value={image}/></center></td></tr>
                         <br/>
+                        <center>
+                        <tr>
+                            <td>
+                                <NavLink to={`/master/responsable/update/${id}`} style={isActive => ({textDecoration: "none", color: "white"})}>
+                                <Button variant = "outline-success">Modifier</Button>
+                                </NavLink>&nbsp;
+                                <Button variant="outline-danger" onClick={()=>deleteResponsable(id)}>Supprimer</Button>
+                            </td>
+                        </tr>
+                        </center>
+                        <br/>
                         <tr>
                             <td><center><Button variant="dark" onClick={(e)=>Submit(e)}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Retour&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Button></center></td>
                         </tr>
+                        <br/>
                     </tbody>
                 </Table>   
             </Form>
