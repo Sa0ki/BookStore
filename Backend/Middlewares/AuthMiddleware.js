@@ -25,7 +25,10 @@ const checkCurrentUser = (req, res, next) => {
             }  
             else{
                 let user = await Responsable.findById(decodedToken.id)
-                res.locals.user = user.email
+                if(user != null)
+                    res.locals.user = user.email
+                else
+                    res.locals.user = ""
                 next()
             }
         })
