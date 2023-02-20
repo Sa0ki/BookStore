@@ -1,6 +1,7 @@
 import ServiceResponsable from "../../Services/ResponsableServices";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import HeaderMaster from "../Master/HeaderMaster";
 //Componments of react bootstrap
 import Form from "../../../node_modules/react-bootstrap/Form"
 import Button from "../../../node_modules/react-bootstrap/Button"
@@ -32,17 +33,19 @@ function FormulaireResponsable(){
 
     function Retour(e){
         e.preventDefault()
-        navigate("/master/responsable")
+        navigate("/master/responsable/get")
     }
     
     async function Submit(e){   
         e.preventDefault();
         const r = {"nom": nom, "prenom": prenom, "email": email, "phone": phone, "motDePasse": motDePasse, "image": image}
         await ServiceResponsable.addResponsable(r)
-        navigate("/master/responsable")
+        navigate("/master/responsable/get")
     }
 
     return (
+        <>
+        <HeaderMaster/>
         <center>
             {displayImage()}
             <br/>
@@ -56,11 +59,11 @@ function FormulaireResponsable(){
                         </tr>
                         <br/>
                         <tr>
-                            <td><center><input type ="password" id="motDePasse" onChange={(e)=>setMotDePasse(e.target.value)} placeholder="Mot de passe" value={motDePasse}/></center></td>
+                            <td><center><input type ="email" id="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Email" value={email} required/></center></td>
                         </tr>
                         <br/>
                         <tr>
-                            <td><center><input type ="email" id="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Email" value={email} required/>&nbsp;&nbsp;&nbsp;
+                            <td><center><input type ="password" id="motDePasse" onChange={(e)=>setMotDePasse(e.target.value)} placeholder="Mot de passe" value={motDePasse}/>&nbsp;&nbsp;&nbsp;
                             <input type ="text" id="phone" onChange={(e)=>setPhone(e.target.value)} placeholder="Téléphone" value={phone} required/></center></td>
                         </tr>
                         <br/>
@@ -76,6 +79,7 @@ function FormulaireResponsable(){
                 </Table>   
             </Form>
         </center>
+        </>
     );
 }
 

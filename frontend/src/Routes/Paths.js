@@ -6,27 +6,32 @@ import TousLesLivres from "../Composants/Livre/TousLesLivres"
 import FormulaireLivre from "../Composants/Livre/FormulaireLivre"
 import ToutesLesCategories from "../Composants/Categorie/ToutesLesCategories"
 import FormulaireCategorie from "../Composants/Categorie/FormulaireCategorie"
-import Acceuil from "../Composants/Visiteur/Acceuil";
+import AcceuilVisiteur from "../Composants/Visiteur/AcceuilVisiteur";
 import ResultatRechercheResponsable from "../Composants/Responsable/ResultatRechercheResponsable"
+import HeaderMaster from "../Composants/Master/HeaderMaster"
+import AcceuilMaster from "../Composants/Master/AcceuilMaster"
 
 function Paths(){
     return (
         <Routes>
             <Route path={"master"}>
-                <Route path={"responsable"} element={<TousLesResponsables/>}></Route>
+                <Route path={"login"} element={<HeaderMaster/>}></Route> 
+
+                <Route path={"acceuil"} element={<AcceuilMaster/>}></Route> 
+                <Route path={"responsable/get"} element={<TousLesResponsables/>}></Route>
                 <Route path={"responsable/get/:id"} element={<ResultatRechercheResponsable/>}></Route>
-                <Route path={"responsable/ajouter"} element={<FormulaireResponsable/>}></Route>
+                <Route path={"responsable/add"} element={<FormulaireResponsable/>}></Route>
                 <Route path={"responsable/update/:id"} element={<ModificationResponsable/>}></Route>
             </Route>
 
             <Route path={"responsable"}>
-                <Route path={"livre"} element={<TousLesLivres/>}></Route>
-                <Route path={"livre/ajouter"} element={<FormulaireLivre/>}></Route>
+                <Route path={"livre/get"} element={<TousLesLivres/>}></Route>
+                <Route path={"livre/add"} element={<FormulaireLivre/>}></Route>
                 <Route path={"categorie"} element={<ToutesLesCategories/>}></Route>
-                <Route path={"categorie/ajouter"} element={<FormulaireCategorie/>}></Route>
+                <Route path={"categorie/add"} element={<FormulaireCategorie/>}></Route>
             </Route>
 
-           <Route path={""} element={<Acceuil/>}></Route> 
+           <Route path={""} element={<AcceuilVisiteur/>}></Route> 
         </Routes>
     )
 }

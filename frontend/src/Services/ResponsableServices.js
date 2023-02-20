@@ -20,5 +20,21 @@ async function updateResponsable(responsable){
     return await Http.patch(`/responsables/update/${responsable._id}`, responsable)
 }
 
-const ServiceResponsable = {getResponsables, getResponsableById, deleteResponsable, addResponsable, updateResponsable}
+async function connexion(email, motDePasse){
+    return await Http.post("/responsables/connexion",{email: email, motDePasse: motDePasse})
+}
+
+async function deconnexion(){
+    return await Http.get("/responsables/deconnexion")
+}
+
+const ServiceResponsable = {
+    getResponsables, 
+    getResponsableById, 
+    deleteResponsable, 
+    addResponsable, 
+    updateResponsable, 
+    connexion,
+    deconnexion
+}
 export default ServiceResponsable

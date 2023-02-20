@@ -1,4 +1,5 @@
 import ServiceResponsable from "../../Services/ResponsableServices";
+import HeaderMaster from "../Master/HeaderMaster";
 import {useEffect, useState} from "react";
 import {useNavigate, NavLink, useParams} from "react-router-dom";
 
@@ -28,25 +29,26 @@ function ResultatRechercheResponsable(){
     async function getResponsableById(){
         const result = await ServiceResponsable.getResponsableById(id)
         console.log(result)
-        setNom(result.data.nom)
-        setPrenom(result.data.prenom)
-        setEmail(result.data.email)
-        setPhone(result.data.phone)
-        setMotDePasse(result.data.motDePasse)
-        setImage(result.data.image)
+        setNom(result.data.data.nom)
+        setPrenom(result.data.data.prenom)
+        setEmail(result.data.data.email)
+        setPhone(result.data.data.phone)
+        setMotDePasse(result.data.data.motDePasse)
+        setImage(result.data.data.image)
     }
 
     function displayImage(){
         try{
             return <img className="profilePic" src={require("./Images/Responsables/"+image)} alt="pic"/>
         }catch(error){
+            setImage("unknown.jpg")
             return <img className="profilePic" src={require("./Images/Responsables/unknown.jpg")} alt="pic"/>
         }
     }
 
     async function deleteResponsable(id){
         await ServiceResponsable.deleteResponsable(id)
-        navigate("/master/responsable")
+        navigate("/master/responsable/get")
     }
 
     useEffect(() => {
@@ -55,10 +57,12 @@ function ResultatRechercheResponsable(){
     
     async function Submit(e){        
         e.preventDefault();
-        navigate("/master/responsable")
+        navigate("/master/responsable/get")
     }
 
     return (
+        <>
+        <HeaderMaster/>
         <center>
             {displayImage()}
             <br/>
@@ -100,7 +104,7 @@ function ResultatRechercheResponsable(){
                     </tbody>
                 </Table>   
             </Form>
-        </center>
+        </center></>
     );
 }
 

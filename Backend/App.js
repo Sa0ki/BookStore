@@ -3,6 +3,7 @@ const express = require("express")
 const dotenv = require("dotenv")
 const mongoose = require("mongoose")
 const cors = require("cors")
+const cookieParser = require("cookie-parser")
 //requirements
 
 //Init
@@ -10,7 +11,8 @@ mongoose.set('strictQuery', false);
 const app = express()
 dotenv.config()
 app.use(express.json())
-app.use(cors())
+app.use(cors({credentials: true, origin: "http://localhost:3000"}))
+app.use(cookieParser())
 //Init
 
 //Routes

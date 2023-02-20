@@ -1,6 +1,8 @@
 import ServiceResponsable from "../../Services/ResponsableServices";
+import HeaderMaster from "../Master/HeaderMaster";
 import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
+
 //Componments of react bootstrap
 import Form from "../../../node_modules/react-bootstrap/Form"
 import Button from "../../../node_modules/react-bootstrap/Button"
@@ -28,12 +30,12 @@ function ModificationResponsable(){
     async function getResponsableById(){
         const result = await ServiceResponsable.getResponsableById(id)
         console.log(result)
-        setNom(result.data.nom)
-        setPrenom(result.data.prenom)
-        setEmail(result.data.email)
-        setPhone(result.data.phone)
-        setMotDePasse(result.data.motDePasse)
-        setImage(result.data.image)
+        setNom(result.data.data.nom)
+        setPrenom(result.data.data.prenom)
+        setEmail(result.data.data.email)
+        setPhone(result.data.data.phone)
+        setMotDePasse(result.data.data.motDePasse)
+        setImage(result.data.data.image)
     }
 
     function displayImage(){
@@ -63,6 +65,8 @@ function ModificationResponsable(){
     }
 
     return (
+        <>
+        <HeaderMaster/>
         <center>
             {displayImage()}
             <br/>
@@ -97,6 +101,7 @@ function ModificationResponsable(){
                 </Table>   
             </Form>
         </center>
+        </>
     );
 }
 

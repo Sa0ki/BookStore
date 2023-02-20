@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react"
 import {NavLink, useNavigate} from "react-router-dom"
 import ServiceResponsable from "../../Services/ResponsableServices"
+import HeaderMaster from "../Master/HeaderMaster"
 
 //Componments of react bootstrap
 import Table from "../../../node_modules/react-bootstrap/Table"
@@ -22,7 +23,7 @@ function TousLesResponsables(){
      async function getResponsables(){
         const result = await ServiceResponsable.getResponsables()
         console.log(result)
-        setResponsables(result.data);
+        setResponsables(result.data.data);
     }
 
     async function deleteResponsable(id){
@@ -69,12 +70,15 @@ function TousLesResponsables(){
     }, []);
 
     return (
+        <>
+        <HeaderMaster/>
+        
         <center>
             <input type="text" size="28" placeholder="Nom et prénom du responsable" onChange={(e)=>{setRecherche(e.target.value)}} onBlur={()=>setResultat(null)}/>&nbsp;&nbsp;
             <Button variant="warning" onClick={(e)=>rechercherResponsable(e)}>Rechercher</Button>
             {timer ? resultat : null}
         <br/><br/>
-        <Button variant="primary"><NavLink to={"/master/responsable/ajouter"} style={isActive => ({textDecoration: "none", color: "white"})}>Nouveau</NavLink></Button>
+        <Button variant="primary"><NavLink to={"/master/responsable/add"} style={isActive => ({textDecoration: "none", color: "white"})}>Nouveau</NavLink></Button>
         <br/><br/><br/>
         <div className="flex-container">
                     {
@@ -117,6 +121,7 @@ function TousLesResponsables(){
                     }
         </div>
         </center>
+        </>
     )
 }
 
