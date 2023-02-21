@@ -16,9 +16,10 @@ app.use(cookieParser())
 //Init
 
 //Routes
+app.use("/masters", require("./Routes/MasterRoutes"))
+app.use("/responsables", require("./Routes/ResponsableRoutes"))
 app.use("/livres", require("./Routes/LivreRoutes"))
 app.use("/categories", require("./Routes/CategorieRoutes"))
-app.use("/responsables", require("./Routes/ResponsableRoutes"))
 //Routes
 
 

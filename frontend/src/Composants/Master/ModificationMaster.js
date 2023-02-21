@@ -1,25 +1,26 @@
-import ServiceResponsable from "../../Services/ResponsableServices";
-import HeaderMaster from "../Master/HeaderMaster";
+import ServiceMaster from "../../Services/MasterServices";
+import HeaderMaster from "./HeaderMaster";
 import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 
 //Componments of react bootstrap
-import Form from "../../../node_modules/react-bootstrap/Form"
-import Button from "../../../node_modules/react-bootstrap/Button"
-import Table from "../../../node_modules/react-bootstrap/Table"
+import Form from "react-bootstrap/esm/Form"
+import Button from "react-bootstrap/esm/Button"
+import Table from "react-bootstrap/esm/Table"
 //Componments of react bootstrap
 
 
-//Css file for responsable
+//Css file for master
 import "../Commun/Css/commun.css"
 
-function ModificationResponsable(){
+function ModificationMaster(){
 
     const {id} = useParams()
     const [touched, setTouched] = useState(false)
 
     const [nom, setNom] = useState("");
     const [prenom, setPrenom] = useState("");
+    const [codeSecret, setCodeSecret] = useState("")
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("")
     const [motDePasse, setMotDePasse] = useState("")
@@ -27,11 +28,12 @@ function ModificationResponsable(){
 
     const navigate = useNavigate()
 
-    async function getResponsableById(){
-        const result = await ServiceResponsable.getResponsableById(id)
+    async function getMasterById(){
+        const result = await ServiceMaster.getMasterById(id)
         console.log(result)
         setNom(result.data.data.nom)
         setPrenom(result.data.data.prenom)
+        setCodeSecret(result.data.data.codeSecret)
         setEmail(result.data.data.email)
         setPhone(result.data.data.phone)
         setMotDePasse(result.data.data.motDePasse)
@@ -40,28 +42,28 @@ function ModificationResponsable(){
 
     function displayImage(){
         try{
-            return <img className="profilePic" src={require("./Images/Responsables/"+image)} alt="pic"/>
+            return <img className="profilePic" src={require("./Images/Masters/"+image)} alt="pic"/>
         }catch(error){
             if(touched == false && image == "")
                 setImage("unknown.jpg")
-            return <img className="profilePic" src={require("./Images/Responsables/unknown.jpg")} alt="pic"/>
+            return <img className="profilePic" src={require("./Images/Masters/unknown.jpg")} alt="pic"/>
         }
     }
 
     useEffect(() => {
-        getResponsableById()
+        getMasterById(id)
     }, [])
     
     async function Submit(e){        
         e.preventDefault();
-        const r = {"_id": id, "nom": nom, "prenom": prenom, "email": email, "phone": phone, "motDePasse": motDePasse, "image": image}
-        await ServiceResponsable.updateResponsable(r)
-        navigate(`/master/responsable/get/${r._id}`)
+        const r = {"_id": id, "nom": nom, "prenom": prenom, "codeSecret": codeSecret, "email": email, "phone": phone, "motDePasse": motDePasse, "image": image}
+        await ServiceMaster.updateMaster(r)
+        navigate(`/master/get/${r._id}`)
     }
 
     function Retour(e){
         e.preventDefault();
-        navigate(`/master/responsable/get/${id}`)
+        navigate(`/master/get/${id}`)
     }
 
     return (
@@ -76,7 +78,8 @@ function ModificationResponsable(){
                     <tbody>
                         <tr>
                             <td><center><input type="text" id="_id" disabled="disabled" value={id}/>&nbsp;&nbsp;&nbsp;
-                            <input type ="password" id="motDePasse" disabled="disabled" onChange={(e)=>setMotDePasse(e.target.value)} placeholder="Mot de passe" value={motDePasse}/></center></td>
+                            <input type ="password" id="motDePasse" disabled="disabled" onChange={(e)=>setMotDePasse(e.target.value)} placeholder="Mot de passe" value={motDePasse}/>&nbsp;&nbsp;&nbsp;
+                            <input type ="text" id="codeSecret" onChange={(e)=>setCodeSecret(e.target.value)} placeholder="Code secret" value={codeSecret}/></center></td>
                         </tr>
                         <br/>
                         <tr>
@@ -105,4 +108,4 @@ function ModificationResponsable(){
     );
 }
 
-export default ModificationResponsable;
+export default ModificationMaster;

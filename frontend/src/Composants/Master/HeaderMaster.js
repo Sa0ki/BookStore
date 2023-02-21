@@ -1,40 +1,40 @@
 import {useNavigate} from "react-router-dom"
 import {useEffect, useState} from "react";
-import ServiceResponsable from "../../Services/ResponsableServices";
 import Button from "react-bootstrap/esm/Button"
 import Form from "react-bootstrap/esm/Form"
 import Table from "react-bootstrap/esm/Table"
+import ServiceMaster from "../../Services/MasterServices";
 
 
 function HeaderMaster(){
 
     const navigate = useNavigate()
 
-    const [email, setEmail] = useState("");
+    const [codeSecret, setCodeSecret] = useState("");
     const [motDePasse, setMotDePasse] = useState("")
 
     const [currentUser, setCurrentUser] = useState("")
     const [login, setLogin] = useState(false)
 
     function displayImage(){
-        return <img className="profilePic" src={require("../Responsable/Images/Responsables/unknown.jpg")} alt="pic"/>
+        return <img className="profilePic" src={require("../Master/Images/Masters/unknown.jpg")} alt="pic"/>
     }
 
     function Retour(e){
         e.preventDefault()
-        navigate("/master/acceuil")
+        navigate("/acceuil")
     }
     
     async function Submit(e){   
         e.preventDefault();
         setLogin(true)
-        await ServiceResponsable.connexion(email, motDePasse)
-        setCurrentUser(email)
-        navigate("/master/responsable/get")
+        await ServiceMaster.connexion(codeSecret, motDePasse)
+        setCurrentUser(codeSecret)
+        navigate("/master/get")
     }
 
     async function checkCurrentUser(){
-        const result = await ServiceResponsable.getResponsables()
+        const result = await ServiceMaster.getMasters()
         if(result.data.currentUser != ""){
             setCurrentUser(result.data.currentUser)
             setLogin(true)
@@ -49,7 +49,7 @@ function HeaderMaster(){
         e.preventDefault()
         setLogin(false)
         setCurrentUser("")
-        await ServiceResponsable.deconnexion()
+        await ServiceMaster.deconnexion()
         navigate("/master/login")
     }
 
@@ -85,7 +85,7 @@ function HeaderMaster(){
                 <Table borderless size="sm">
                     <tbody>
                         <tr>
-                            <td><center><input type ="email" id="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Email" value={email} required/></center></td>
+                            <td><center><input type ="text" id="codeSecret" onChange={(e)=>setCodeSecret(e.target.value)} placeholder="Code secret" value={codeSecret} required/></center></td>
                         </tr>
                         <br/>
                         <tr>

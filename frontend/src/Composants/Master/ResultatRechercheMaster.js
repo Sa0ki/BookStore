@@ -1,24 +1,25 @@
-import ServiceResponsable from "../../Services/ResponsableServices";
-import HeaderMaster from "../Master/HeaderMaster";
+import ServiceMaster from "../../Services/MasterServices";
+import HeaderMaster from "./HeaderMaster";
 import {useEffect, useState} from "react";
 import {useNavigate, NavLink, useParams} from "react-router-dom";
 
 //Componments of react bootstrap
-import Form from "../../../node_modules/react-bootstrap/Form"
-import Button from "../../../node_modules/react-bootstrap/Button"
-import Table from "../../../node_modules/react-bootstrap/Table"
+import Form from "react-bootstrap/esm/Form"
+import Button from "react-bootstrap/esm/Button"
+import Table from "react-bootstrap/esm/Table"
 //Componments of react bootstrap
 
 
-//Css file for responsable
+//Css file for master
 import "../Commun/Css/commun.css"
 
-function ResultatRechercheResponsable(){
+function ResultatRechercheMaster(){
 
     const {id} = useParams()
 
     const [nom, setNom] = useState("");
     const [prenom, setPrenom] = useState("");
+    const [codeSecret, setCodeSecret] = useState("")
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("")
     const [motDePasse, setMotDePasse] = useState("")
@@ -26,11 +27,12 @@ function ResultatRechercheResponsable(){
 
     const navigate = useNavigate()
 
-    async function getResponsableById(){
-        const result = await ServiceResponsable.getResponsableById(id)
+    async function getMasterById(){
+        const result = await ServiceMaster.getMasterById(id)
         console.log(result)
         setNom(result.data.data.nom)
         setPrenom(result.data.data.prenom)
+        setCodeSecret(result.data.data.codeSecret)
         setEmail(result.data.data.email)
         setPhone(result.data.data.phone)
         setMotDePasse(result.data.data.motDePasse)
@@ -39,25 +41,25 @@ function ResultatRechercheResponsable(){
 
     function displayImage(){
         try{
-            return <img className="profilePic" src={require("./Images/Responsables/"+image)} alt="pic"/>
+            return <img className="profilePic" src={require("./Images/Masters/"+image)} alt="pic"/>
         }catch(error){
             setImage("unknown.jpg")
-            return <img className="profilePic" src={require("./Images/Responsables/unknown.jpg")} alt="pic"/>
+            return <img className="profilePic" src={require("./Images/Masters/unknown.jpg")} alt="pic"/>
         }
     }
 
-    async function deleteResponsable(id){
-        await ServiceResponsable.deleteResponsable(id)
-        navigate("/master/responsable/get")
+    async function deleteMaster(id){
+        await ServiceMaster.deleteMaster(id)
+        navigate("/master/get")
     }
 
     useEffect(() => {
-        getResponsableById()
+        getMasterById(id)
     }, [])
     
     async function Submit(e){        
         e.preventDefault();
-        navigate("/master/responsable/get")
+        navigate("/master/get")
     }
 
     return (
@@ -72,7 +74,8 @@ function ResultatRechercheResponsable(){
                     <tbody>
                         <tr>
                             <td><center><input type="text" id="_id" disabled="disabled" value={id}/>&nbsp;&nbsp;&nbsp;
-                            <input type ="password" id="motDePasse" disabled="disabled" value={motDePasse}/></center></td>
+                            <input type ="password" id="motDePasse" disabled="disabled" value={motDePasse}/>&nbsp;&nbsp;&nbsp;
+                            <input type ="text" id="codeSecret" disabled="disabled" value={codeSecret}/></center></td>
                         </tr>
                         <br/>
                         <tr>
@@ -90,10 +93,10 @@ function ResultatRechercheResponsable(){
                         <center>
                         <tr>
                             <td>
-                                <NavLink to={`/master/responsable/update/${id}`} style={isActive => ({textDecoration: "none", color: "white"})}>
+                                <NavLink to={`/master/update/${id}`} style={isActive => ({textDecoration: "none", color: "white"})}>
                                 <Button variant = "outline-success">Modifier</Button>
                                 </NavLink>&nbsp;
-                                <Button variant="outline-danger" onClick={()=>deleteResponsable(id)}>Supprimer</Button>
+                                <Button variant="outline-danger" onClick={()=>deleteMaster(id)}>Supprimer</Button>
                             </td>
                         </tr>
                         </center>
@@ -108,4 +111,4 @@ function ResultatRechercheResponsable(){
     );
 }
 
-export default ResultatRechercheResponsable;
+export default ResultatRechercheMaster;

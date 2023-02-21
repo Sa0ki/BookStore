@@ -1,42 +1,37 @@
 import {useState, useEffect} from "react"
 import {NavLink, useNavigate} from "react-router-dom"
-import ServiceResponsable from "../../Services/ResponsableServices"
-import HeaderMaster from "../Master/HeaderMaster"
+import ServiceMaster from "../../Services/MasterServices"
+import HeaderMaster from "./HeaderMaster"
 
 //Componments of react bootstrap
-import Table from "../../../node_modules/react-bootstrap/Table"
-import Button from "../../../node_modules/react-bootstrap/Button"
+import Table from "react-bootstrap/esm/Table"
+import Button from "react-bootstrap/esm/Button"
 //Componments of react bootstrap
 
-//Css file for responsable
+//Css file for master
 import "../Commun/Css/commun.css"
 
-function TousLesResponsables(){
+function TousLesMasters(){
 
-    const [responsables, setResponsables] = useState([]);
+    const [masters, setMasters] = useState([]);
     const [recherche, setRecherche] = useState("")
     const [resultat, setResultat] = useState(null)
     const [timer, setTimer] = useState(false)
 
     const navigate = useNavigate()
 
-     async function getResponsables(){
-        const result = await ServiceResponsable.getResponsables()
+     async function getMasters(){
+        const result = await ServiceMaster.getMasters()
         console.log(result)
-        setResponsables(result.data.data);
-    }
-
-    async function deleteResponsable(id){
-        await ServiceResponsable.deleteResponsable(id)
-        getResponsables()
+        setMasters(result.data.data);
     }
 
     function displayProfilePic(pic){
         try{
-            return <img className="profilePic" src={require("./Images/Responsables/"+pic)} alt="pic"/>
+            return <img className="profilePic" src={require("./Images/Masters/"+pic)} alt="pic"/>
         }catch(error){
             pic="unknown.jpg"
-            return <img className="profilePic" src={require("./Images/Responsables/unknown.jpg")} alt="pic"/>
+            return <img className="profilePic" src={require("./Images/Masters/unknown.jpg")} alt="pic"/>
         }
     }
 
@@ -45,19 +40,19 @@ function TousLesResponsables(){
             return <img className="more" src={require("../Commun/Images/Icons/more.png")} alt="pic"/>
         }catch(error){
             pic="unknown.jpg"
-            return <img className="more" src={require("./Images/Responsables/unknown.jpg")} alt="pic"/>
+            return <img className="more" src={require("./Images/Masters/unknown.jpg")} alt="pic"/>
         }
     }
 
     function More(id){
-        navigate(`/master/responsable/get/${id}`)
+        navigate(`/master/get/${id}`)
     }
 
-    function rechercherResponsable(e){
+    function rechercherMaster(e){
         e.preventDefault();
-        let r = responsables.find( r => (r.nom + r.prenom).toLowerCase() == recherche.replace(/\s/g, '').toLowerCase() || (r.prenom + r.nom).toLowerCase() == recherche.replace(/\s/g, '').toLowerCase() )
+        let r = masters.find( r => (r.nom + r.prenom).toLowerCase() == recherche.replace(/\s/g, '').toLowerCase() || (r.prenom + r.nom).toLowerCase() == recherche.replace(/\s/g, '').toLowerCase() )
         if(r != undefined)
-            navigate(`/master/responsable/get/${r._id}`)
+            navigate(`/master/get/${r._id}`)
         else{
             setTimer(true)
             setTimeout(()=>setTimer(false), 2000)
@@ -66,7 +61,7 @@ function TousLesResponsables(){
     }
     
     useEffect(()=>{
-        getResponsables();
+        getMasters();
     }, []);
 
     return (
@@ -74,15 +69,15 @@ function TousLesResponsables(){
         <HeaderMaster/>
         
         <center>
-            <input type="text" size="28" placeholder="Nom et prénom du responsable" onChange={(e)=>{setRecherche(e.target.value)}} onBlur={()=>setResultat(null)}/>&nbsp;&nbsp;
-            <Button variant="warning" onClick={(e)=>rechercherResponsable(e)}>Rechercher</Button>
+            <input type="text" size="28" placeholder="Nom et prénom du master" onChange={(e)=>{setRecherche(e.target.value)}} onBlur={()=>setResultat(null)}/>&nbsp;&nbsp;
+            <Button variant="warning" onClick={(e)=>rechercherMaster(e)}>Rechercher</Button>
             {timer ? resultat : null}
         <br/><br/>
-        <Button variant="primary"><NavLink to={"/master/responsable/add"} style={isActive => ({textDecoration: "none", color: "white"})}>Nouveau</NavLink></Button>
+        <Button variant="primary"><NavLink to={"/master/add"} style={isActive => ({textDecoration: "none", color: "white"})}>Nouveau</NavLink></Button>
         <br/><br/><br/>
         <div className="flex-container">
                     {
-                        responsables.map((r, i) =>
+                        masters.map((r, i) =>
                             <div className="flex-child"> 
                                <Table borderless>
                                 <tbody>
@@ -125,4 +120,4 @@ function TousLesResponsables(){
     )
 }
 
-export default TousLesResponsables
+export default TousLesMasters
