@@ -4,6 +4,7 @@ const getLivres = async () => { return await Livre.find().populate("categorie") 
 
 const getLivreById = async (id) => { return await Livre.findById(id) }
 
+
 const addLivre = async (livre) => { 
     return await Livre.create(livre) 
 }
@@ -17,4 +18,9 @@ const updateLivre = async(id, newLivre) => {
     return Livre
 }
 
-module.exports = {getLivres, getLivreById, addLivre, deleteLivre, updateLivre}
+const searchLivreByNom = async (nom) => {
+    return await Livre.find({ nom: new RegExp(nom, "i") }).populate("categorie");
+  };
+  
+  module.exports = { getLivres, getLivreById, addLivre, deleteLivre, updateLivre, searchLivreByNom };
+  

@@ -30,7 +30,7 @@ function TousLesMasters(){
         try{
             return <img className="profilePic" src={require("./Images/Masters/"+pic)} alt="pic"/>
         }catch(error){
-            pic="unknown.jpg"
+            
             return <img className="profilePic" src={require("./Images/Masters/unknown.jpg")} alt="pic"/>
         }
     }
@@ -39,7 +39,7 @@ function TousLesMasters(){
         try{
             return <img className="more" src={require("../Commun/Images/Icons/more.png")} alt="pic"/>
         }catch(error){
-            pic="unknown.jpg"
+            
             return <img className="more" src={require("./Images/Masters/unknown.jpg")} alt="pic"/>
         }
     }

@@ -35,7 +35,6 @@ function TousLesResponsables(){
         try{
             return <img className="profilePic" src={require("./Images/Responsables/"+pic)} alt="pic"/>
         }catch(error){
-            pic="unknown.jpg"
             return <img className="profilePic" src={require("./Images/Responsables/unknown.jpg")} alt="pic"/>
         }
     }
@@ -44,7 +43,6 @@ function TousLesResponsables(){
         try{
             return <img className="more" src={require("../Commun/Images/Icons/more.png")} alt="pic"/>
         }catch(error){
-            pic="unknown.jpg"
             return <img className="more" src={require("./Images/Responsables/unknown.jpg")} alt="pic"/>
         }
     }

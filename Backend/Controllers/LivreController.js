@@ -10,6 +10,7 @@ const getLivreById = async (req, res) => {
     catch(error){res.status(404).json(error)}
 }
 
+
 const addLivre = async (req, res) => {
     try{res.status(200).json(await livreServices.addLivre(req.body))}
     catch(error){res.status(500).json(error)}
@@ -25,4 +26,13 @@ const updateLivre = async (req, res) => {
     catch(error){res.status(500).json(error)}
 }
 
-module.exports = {getLivres, getLivreById, addLivre, deleteLivre, updateLivre}
+const searchLivreByNom = async (req, res) => {
+    try {
+      res.status(200).json(await livreServices.searchLivreByNom(req.query.nom));
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  };
+  
+  module.exports = { getLivres, getLivreById, addLivre, deleteLivre, updateLivre, searchLivreByNom };
+  

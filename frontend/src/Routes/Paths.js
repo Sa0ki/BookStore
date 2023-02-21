@@ -34,7 +34,7 @@ function Paths(){
                 <Route path={"responsable/update/:id"} element={<ModificationResponsable/>}></Route>
             </Route>
 
-            <Route path={"responsable"}>
+            <Route path={"responsable"}>    
 
 
                 <Route path={"livre/get"} element={<TousLesLivres/>}></Route>
