@@ -14,7 +14,11 @@ import TousLesMasters from "../Composants/Master/TousLesMasters"
 import ResultatRechercheMaster from "../Composants/Master/ResultatRechercheMaster"
 import ModificationMaster from "../Composants/Master/ModificationMaster"
 import FormulaireMaster from "../Composants/Master/FormulaireMaster"
+<<<<<<< HEAD
 import TousLesResponsablesTab from "../Composants/Responsable/TousLesResponsablesTab"
+=======
+import Livres from "../Composants/Visiteur/Livres"
+>>>>>>> 6cfbdd1c84c9ccc894e7600392f43f56bff56e6a
 
 function Paths(){
     return (
@@ -43,8 +47,10 @@ function Paths(){
                 <Route path={"categorie"} element={<ToutesLesCategories/>}></Route>
                 <Route path={"categorie/add"} element={<FormulaireCategorie/>}></Route>
             </Route>
-
-           <Route path={""} element={<AcceuilVisiteur/>}></Route> 
+           <Route path={"/livres"} element ={<Livres/>}></Route>
+           <Route path={""} element={<AcceuilVisiteur/>}>
+           
+           </Route> 
         </Routes>
     )
 }

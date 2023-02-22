@@ -142,6 +142,10 @@ function FormulaireLivre() {
     </div>
     <center>
     <button class="btn btn-primary" type="submit">Ajouter</button>
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 6cfbdd1c84c9ccc894e7600392f43f56bff56e6a
     </center>
     </form>
     
