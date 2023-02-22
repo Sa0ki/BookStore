@@ -14,6 +14,7 @@ import TousLesMasters from "../Composants/Master/TousLesMasters"
 import ResultatRechercheMaster from "../Composants/Master/ResultatRechercheMaster"
 import ModificationMaster from "../Composants/Master/ModificationMaster"
 import FormulaireMaster from "../Composants/Master/FormulaireMaster"
+import TousLesResponsablesTab from "../Composants/Responsable/TousLesResponsablesTab"
 
 function Paths(){
     return (
@@ -28,7 +29,7 @@ function Paths(){
                 <Route path={"add"} element={<FormulaireMaster/>}></Route>
                 <Route path={"update/:id"} element={<ModificationMaster/>}></Route>
 
-                <Route path={"responsable/get"} element={<TousLesResponsables/>}></Route>
+                <Route path={"responsable/get"} element={<TousLesResponsablesTab/>}></Route>
                 <Route path={"responsable/get/:id"} element={<ResultatRechercheResponsable/>}></Route>
                 <Route path={"responsable/add"} element={<FormulaireResponsable/>}></Route>
                 <Route path={"responsable/update/:id"} element={<ModificationResponsable/>}></Route>

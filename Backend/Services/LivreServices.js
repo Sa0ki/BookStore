@@ -20,7 +20,7 @@ const updateLivre = async(id, newLivre) => {
 
 const searchLivreByNom = async (nom) => {
     return await Livre.find({ nom: new RegExp(nom, "i") }).populate("categorie");
-  };
+};
   
   module.exports = { getLivres, getLivreById, addLivre, deleteLivre, updateLivre, searchLivreByNom };
   

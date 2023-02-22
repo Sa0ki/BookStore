@@ -26,11 +26,6 @@ function TousLesResponsables(){
         setResponsables(result.data.data);
     }
 
-    async function deleteResponsable(id){
-        await ServiceResponsable.deleteResponsable(id)
-        getResponsables()
-    }
-
     function displayProfilePic(pic){
         try{
             return <img className="profilePic" src={require("./Images/Responsables/"+pic)} alt="pic"/>
