@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Table, Button, Form } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
+import B1 from './images/B1.jpg';
+import B2 from './images/B2.jpg';
+import B3 from './images/B3.jpg';
+import B4 from './images/B4.jpg';
+import B5 from './images/B5.jpg';
 
 
 const TousLesLivres = () => {
@@ -29,6 +35,22 @@ const TousLesLivres = () => {
     }
   }
 
+  const renderImage = (imagePath) => {
+    switch(imagePath){
+        case "B1.jpg":
+            return B1;
+        case "B2.jpg":
+            return B2;
+        case "B3.jpg":
+            return B3;
+        case "B4.jpg":
+            return B4;
+        case "B5.jpg":
+            return B5;
+        default:
+  }
+}
+
   return (
     <div className="container mt-5">
       <h2 className="mb-4">Liste des Livres</h2>
@@ -47,7 +69,7 @@ const TousLesLivres = () => {
             <th>Auteur</th>
             <th>Editeur</th>
             <th>DE</th>
-            <th>Image</th>
+            <th>Cover</th>
             <th>Catégorie</th>
             <th>Action</th>
           </tr>
@@ -63,8 +85,9 @@ const TousLesLivres = () => {
               <td>{livre.editeur}</td>
               <td>{new Date(livre.dateEdition).toLocaleDateString()}</td>
               <td>
-                <img src={livre.image} alt={livre.nom} style={{ height: 50 }} />
+                <center><img src={renderImage(livre.image)} alt={livre.nom} style={{ height: 80 }} /></center>
               </td>
+
               <td>{livre.categorie && livre.categorie.nom}</td>
               <td>
                 <Button variant="primary" size="sm" className="me-2">
@@ -78,6 +101,7 @@ const TousLesLivres = () => {
           ))}
         </tbody>
       </Table>
+      <Link to = "/responsable/livre/Add"><Button variant="primary" size="sm" className="me-2">Ajouter un Livre</Button></Link>
     </div>
   );
 };

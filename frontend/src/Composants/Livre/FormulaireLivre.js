@@ -11,11 +11,20 @@ function FormulaireLivre() {
   const [isbn, setIsbn] = useState("");
   const [editeur, setEditeur] = useState("");
   const [dateEdition, setDateEdition] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImagePath] = useState("");
   const [titre, setTitre] = useState("");
   const [auteur, setAuteur] = useState("");
   const [categorieId, setCategorieId] = useState("");
   const navigate = useNavigate();
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setImagePath(`${file.name}`);
+    };
+  };
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -85,16 +94,16 @@ function FormulaireLivre() {
       />
     </div>
 
-    <div class="form-group">
-  <label for="image">Image:</label>
-  <input
-    class="form-control"
-    type="file"
-    accept=".jpg, .jpeg, .png"
-    id="image"
-    onChange={(event) => setImage(event.target.files[0])}
-  />
-</div>
+    <div className="form-group">
+        <label htmlFor="image">Image:</label>
+        <input
+          className="form-control"
+          type="file"
+          accept=".jpg, .jpeg, .png"
+          id="image"
+            onChange={handleImageChange}
+        />
+      </div>
     <div class="form-group">
       <label for="titre">Titre:</label>
       <input
@@ -107,25 +116,8 @@ function FormulaireLivre() {
     </div>
 
     <div class="form-group">
-      <label for="auteur">Auteur:</label>
-      <input
-        class="form-control"
-        type="text"
-        id="auteur"
-        value={auteur}
-        onChange={(event) => setAuteur(event.target.value)}
-      />
-    </div>
-
-    <div class="form-group">
-      <label for="dateEdition">DE:</label>
-      <input
-        class="form-control"
-        type="date"
-        id="dateEdition"
-        value={dateEdition}
-        onChange={(event) => setDateEdition(event.target.value)}
-      />
+        <label for="auteur">Auteur:</label>
+        <input class="form-control" type="text" id="auteur" value={auteur} onChange={(event) => setAuteur(event.target.value)} />
     </div>
 
     <div class="form-group">
@@ -140,18 +132,22 @@ function FormulaireLivre() {
         <option value="1">Romans</option>
         <option value="2">Science Fiction</option>
         <option value="3">Fantastique</option>
+        <option value="4">Manga</option>
       </select>
     </div>
 
     <div class="form-group">
-      <button class="btn btn-primary" type="submit">Ajouter</button>
-      <button class="btn btn-secondary" type="button" onClick={() => navigate("/responsable/livre/get")}>
-        Annuler
-      </button>
+        <label for="dateEdition">Date d'édition:</label>
+        <input class="form-control" type="date" id="dateEdition" value={dateEdition} onChange={(event) => setDateEdition(event.target.value)} />
     </div>
-  </form>
-</div>
-  );
+    <center>
+    <button class="btn btn-primary" type="submit">Ajouter</button>
+    <button class="btn btn-danger" onClick={navigate("/responsable/livre/get")}>Retour</button>
+    </center>
+    </form>
+    
+    </div>
+    );
 }
 
 export default FormulaireLivre;
