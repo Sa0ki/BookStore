@@ -142,7 +142,7 @@ function FormulaireLivre() {
     </div>
     <center>
     <button class="btn btn-primary" type="submit">Ajouter</button>
-    <button class="btn btn-danger" onClick={navigate("/responsable/livre/get")}>Retour</button>
+    
     </center>
     </form>
     
