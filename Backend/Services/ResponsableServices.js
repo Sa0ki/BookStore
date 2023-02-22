@@ -20,6 +20,10 @@ const updateResponsable = async(id, newResponsable) => {
     return responsable
 }
 
+const searchResponsableByName = async (nom) => {
+    return await Responsable.find({ nom: new RegExp(nom, "i") });
+};
+
 const connexion = async(email, motDePasse) => {
     const r = await Responsable.findOne({email})
     if(!r)
@@ -47,5 +51,6 @@ module.exports = {
     addResponsable, 
     deleteResponsable, 
     updateResponsable, 
+    searchResponsableByName,
     connexion
 }

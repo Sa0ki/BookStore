@@ -2,7 +2,6 @@ import {Route, Routes} from "react-router-dom"
 import TousLesResponsables from "../Composants/Responsable/TousLesResponsables"
 import FormulaireResponsable from "../Composants/Responsable/FormulaireResponsable"
 import ModificationResponsable from "../Composants/Responsable/ModificationResponsable"
-import TousLesLivres from "../Composants/Livre/TousLesLivres"
 import FormulaireLivre from "../Composants/Livre/FormulaireLivre"
 import ToutesLesCategories from "../Composants/Categorie/ToutesLesCategories"
 import FormulaireCategorie from "../Composants/Categorie/FormulaireCategorie"
@@ -14,11 +13,7 @@ import TousLesMasters from "../Composants/Master/TousLesMasters"
 import ResultatRechercheMaster from "../Composants/Master/ResultatRechercheMaster"
 import ModificationMaster from "../Composants/Master/ModificationMaster"
 import FormulaireMaster from "../Composants/Master/FormulaireMaster"
-<<<<<<< HEAD
-import TousLesResponsablesTab from "../Composants/Responsable/TousLesResponsablesTab"
-=======
-import Livres from "../Composants/Visiteur/Livres"
->>>>>>> 6cfbdd1c84c9ccc894e7600392f43f56bff56e6a
+import TousLesLivres from "../Composants/Livre/TousLesLivres"
 
 function Paths(){
     return (
@@ -33,7 +28,7 @@ function Paths(){
                 <Route path={"add"} element={<FormulaireMaster/>}></Route>
                 <Route path={"update/:id"} element={<ModificationMaster/>}></Route>
 
-                <Route path={"responsable/get"} element={<TousLesResponsablesTab/>}></Route>
+                <Route path={"responsable/get"} element={<TousLesResponsables/>}></Route>
                 <Route path={"responsable/get/:id"} element={<ResultatRechercheResponsable/>}></Route>
                 <Route path={"responsable/add"} element={<FormulaireResponsable/>}></Route>
                 <Route path={"responsable/update/:id"} element={<ModificationResponsable/>}></Route>
@@ -47,7 +42,7 @@ function Paths(){
                 <Route path={"categorie"} element={<ToutesLesCategories/>}></Route>
                 <Route path={"categorie/add"} element={<FormulaireCategorie/>}></Route>
             </Route>
-           <Route path={"/livres"} element ={<Livres/>}></Route>
+           <Route path={"/livres"} element ={<TousLesLivres/>}></Route>
            <Route path={""} element={<AcceuilVisiteur/>}>
            
            </Route> 

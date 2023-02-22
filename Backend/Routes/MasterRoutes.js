@@ -8,6 +8,7 @@ masterRoutes.get("/get/:id", masterMiddleware.checkCurrentUser, masterMiddleware
 masterRoutes.post("/add", masterMiddleware.checkCurrentUser, masterMiddleware.requireAuth, masterController.addMaster)
 masterRoutes.delete("/delete/:id", masterMiddleware.checkCurrentUser, masterMiddleware.requireAuth, masterController.deleteMaster)
 masterRoutes.patch("/update/:id", masterMiddleware.checkCurrentUser, masterMiddleware.requireAuth, masterController.updateMaster)
+masterRoutes.get("/search",masterMiddleware.checkCurrentUser, masterMiddleware.requireAuth, masterController.searchMasterByName);
 masterRoutes.post("/connexion", masterMiddleware.checkCurrentUser, masterController.connexionMaster)
 masterRoutes.get("/deconnexion", masterMiddleware.checkCurrentUser, masterMiddleware.requireAuth ,masterController.deconnexionMaster)
 

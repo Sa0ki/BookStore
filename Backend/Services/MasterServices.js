@@ -20,6 +20,10 @@ const updateMaster = async(id, newMaster) => {
     return master
 }
 
+const searchMasterByName = async (nom) => {
+    return await Master.find({ nom: new RegExp(nom, "i") });
+};
+
 const connexionMaster = async(codeSecret, motDePasse) => {
     const m = await Master.findOne({codeSecret})
     if(!m)
@@ -47,5 +51,6 @@ module.exports = {
     addMaster, 
     deleteMaster, 
     updateMaster, 
+    searchMasterByName,
     connexionMaster
 }

@@ -40,6 +40,14 @@ const updateResponsable = async (req, res) => {
     catch(error){res.status(500).json(error)}
 }
 
+const searchResponsableByName = async (req, res) => {
+    try {
+      res.status(200).json(await responsableServices.searchResponsableByName(req.query.nom));
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  };
+
 const connexion = async(req, res) => {
     try{
         const jwt = await responsableServices.connexion(req.body.email, req.body.motDePasse)
@@ -66,5 +74,6 @@ module.exports = {
     deleteResponsable, 
     updateResponsable, 
     connexion,
+    searchResponsableByName,
     deconnexion
 }

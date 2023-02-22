@@ -40,6 +40,14 @@ const updateMaster = async (req, res) => {
     catch(error){res.status(500).json(error)}
 }
 
+const searchMasterByName = async (req, res) => {
+    try {
+      res.status(200).json(await masterServices.searchMasterByName(req.query.nom));
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  };
+
 const connexionMaster = async(req, res) => {
     try{
         const jwt = await masterServices.connexionMaster(req.body.codeSecret, req.body.motDePasse)
@@ -65,6 +73,7 @@ module.exports = {
     addMaster, 
     deleteMaster, 
     updateMaster, 
+    searchMasterByName,
     connexionMaster,
     deconnexionMaster
 }

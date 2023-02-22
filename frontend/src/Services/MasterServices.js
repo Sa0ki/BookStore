@@ -20,6 +20,10 @@ async function updateMaster(master){
     return await Http.patch(`/masters/update/${master._id}`, master)
 }
 
+async function searchMasterByName(nom){
+    return await Http.get(`masters/search?nom=${nom}`)
+}
+
 async function connexion(codeSecret, motDePasse){
     return await Http.post("/masters/connexion",{codeSecret: codeSecret, motDePasse: motDePasse})
 }
@@ -34,6 +38,7 @@ const ServiceMaster = {
     deleteMaster, 
     addMaster, 
     updateMaster, 
+    searchMasterByName,
     connexion,
     deconnexion
 }

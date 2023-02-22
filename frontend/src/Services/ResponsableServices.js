@@ -20,6 +20,10 @@ async function updateResponsable(responsable){
     return await Http.patch(`/responsables/update/${responsable._id}`, responsable)
 }
 
+async function searchResponsableByName(nom){
+    return await Http.get(`responsables/search?nom=${nom}`)
+}
+
 async function connexion(email, motDePasse){
     return await Http.post("/responsables/connexion",{email: email, motDePasse: motDePasse})
 }
@@ -34,6 +38,7 @@ const ServiceResponsable = {
     deleteResponsable, 
     addResponsable, 
     updateResponsable, 
+    searchResponsableByName,
     connexion,
     deconnexion
 }
