@@ -25,10 +25,12 @@ const checkCurrentUser = (req, res, next) => {
             }  
             else{
                 let user = await Master.findById(decodedToken.id)
+
                 if(user != null)
                     res.locals.user = user.email
                 else
                     res.locals.user = ""
+                    
                 next()
             }
         })

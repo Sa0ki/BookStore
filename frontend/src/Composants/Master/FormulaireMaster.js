@@ -1,7 +1,7 @@
 import ServiceMaster from "../../Services/MasterServices";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import HeaderMaster from "./HeaderMaster";
+import LoginMaster from "./LoginMaster";
 //Componments of react bootstrap
 import Form from "react-bootstrap/esm/Form"
 import Button from "react-bootstrap/esm/Button"
@@ -46,7 +46,7 @@ function FormulaireMaster(){
 
     return (
         <>
-        <HeaderMaster/>
+        <LoginMaster/>
         <center>
             {displayImage()}
             <br/>

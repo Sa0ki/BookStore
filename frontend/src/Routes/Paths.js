@@ -7,7 +7,8 @@ import ToutesLesCategories from "../Composants/Categorie/ToutesLesCategories"
 import FormulaireCategorie from "../Composants/Categorie/FormulaireCategorie"
 import AcceuilVisiteur from "../Composants/Visiteur/AcceuilVisiteur";
 import ResultatRechercheResponsable from "../Composants/Responsable/ResultatRechercheResponsable"
-import HeaderMaster from "../Composants/Master/HeaderMaster"
+import LoginMaster from "../Composants/Master/LoginMaster"
+import LoginResponsable from "../Composants/Responsable/LoginResponsable"
 import AcceuilMaster from "../Composants/Master/AcceuilMaster"
 import TousLesMasters from "../Composants/Master/TousLesMasters"
 import ResultatRechercheMaster from "../Composants/Master/ResultatRechercheMaster"
@@ -20,7 +21,7 @@ function Paths(){
         <Routes>
             <Route path={"master"}>
 
-                <Route path={"login"} element={<HeaderMaster/>}></Route> 
+                <Route path={"login"} element={<LoginMaster/>}></Route> 
                 <Route path={"acceuil"} element={<AcceuilMaster/>}></Route> 
 
                 <Route path={"get"} element={<TousLesMasters/>}></Route>
@@ -36,6 +37,7 @@ function Paths(){
 
             <Route path={"responsable"}>    
 
+                <Route path={"login"} element={<LoginResponsable/>}></Route> 
 
                 <Route path={"livre/get"} element={<TousLesLivres/>}></Route>
                 <Route path={"livre/add"} element={<FormulaireLivre/>}></Route>

@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react"
 import {Link, useNavigate} from "react-router-dom"
 import ServiceMaster from "../../Services/MasterServices";
-import HeaderMaster from "../Master/HeaderMaster"
+import LoginMaster from "../Master/LoginMaster"
 import {Table, Button, Form} from 'react-bootstrap';
 
 //Css file for responsable
@@ -42,7 +42,7 @@ function TousLesMasters(){
 
     return (
         <>
-        <HeaderMaster/>
+        <LoginMaster/>
         
         <div className="container mt-5">
       <h2 className="mb-4">Liste des masters</h2>

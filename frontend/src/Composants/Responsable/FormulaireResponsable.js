@@ -1,7 +1,7 @@
 import ServiceResponsable from "../../Services/ResponsableServices";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import HeaderMaster from "../Master/HeaderMaster";
+import LoginResponsable from "./LoginResponsable";
 //Componments of react bootstrap
 import Form from "../../../node_modules/react-bootstrap/Form"
 import Button from "../../../node_modules/react-bootstrap/Button"
@@ -45,7 +45,7 @@ function FormulaireResponsable(){
 
     return (
         <>
-        <HeaderMaster/>
+        <LoginResponsable/>
         <center>
             {displayImage()}
             <br/>

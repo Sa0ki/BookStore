@@ -3,14 +3,14 @@ import {useEffect, useState} from "react";
 import Button from "react-bootstrap/esm/Button"
 import Form from "react-bootstrap/esm/Form"
 import Table from "react-bootstrap/esm/Table"
-import ServiceMaster from "../../Services/MasterServices";
+import ServiceResponsable from "../../Services/ResponsableServices";
 
 
-function HeaderMaster(){
+function LoginResponsable(){
 
     const navigate = useNavigate()
 
-    const [codeSecret, setCodeSecret] = useState("");
+    const [email, setEmail] = useState("");
     const [motDePasse, setMotDePasse] = useState("")
 
     const [currentUser, setCurrentUser] = useState("")
@@ -28,13 +28,13 @@ function HeaderMaster(){
     async function Submit(e){   
         e.preventDefault();
         setLogin(true)
-        await ServiceMaster.connexion(codeSecret, motDePasse)
-        setCurrentUser(codeSecret)
-        navigate("/master/get")
+        await ServiceResponsable.connexion(email, motDePasse)
+        setCurrentUser(email)
+        navigate("/responsable/livre/get")
     }
 
     async function checkCurrentUser(){
-        const result = await ServiceMaster.getMasters()
+        const result = await ServiceResponsable.getResponsables()
         if(result.data.currentUser != ""){
             setCurrentUser(result.data.currentUser)
             setLogin(true)
@@ -49,8 +49,8 @@ function HeaderMaster(){
         e.preventDefault()
         setLogin(false)
         setCurrentUser("")
-        await ServiceMaster.deconnexion()
-        navigate("/master/login")
+        await ServiceResponsable.deconnexion()
+        navigate("/acceuil")
     }
 
     useEffect(()=>{
@@ -85,7 +85,7 @@ function HeaderMaster(){
                 <Table borderless size="sm">
                     <tbody>
                         <tr>
-                            <td><center><input type ="text" id="codeSecret" onChange={(e)=>setCodeSecret(e.target.value)} placeholder="Code secret" value={codeSecret} required/></center></td>
+                            <td><center><input type ="email" id="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Email" value={email} required/></center></td>
                         </tr>
                         <br/>
                         <tr>
@@ -107,4 +107,4 @@ function HeaderMaster(){
     )
 }
 
-export default HeaderMaster
+export default LoginResponsable

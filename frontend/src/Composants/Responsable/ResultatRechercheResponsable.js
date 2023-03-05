@@ -1,5 +1,5 @@
 import ServiceResponsable from "../../Services/ResponsableServices";
-import HeaderMaster from "../Master/HeaderMaster";
+import LoginResponsable from "./LoginResponsable";
 import {useEffect, useState} from "react";
 import {useNavigate, NavLink, useParams} from "react-router-dom";
 
@@ -62,7 +62,7 @@ function ResultatRechercheResponsable(){
 
     return (
         <>
-        <HeaderMaster/>
+        <LoginResponsable/>
         <center>
             {displayImage()}
             <br/>

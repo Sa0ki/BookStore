@@ -1,5 +1,5 @@
 import ServiceMaster from "../../Services/MasterServices";
-import HeaderMaster from "./HeaderMaster";
+import LoginMaster from "./LoginMaster";
 import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 
@@ -68,7 +68,7 @@ function ModificationMaster(){
 
     return (
         <>
-        <HeaderMaster/>
+        <LoginMaster/>
         <center>
             {displayImage()}
             <br/>

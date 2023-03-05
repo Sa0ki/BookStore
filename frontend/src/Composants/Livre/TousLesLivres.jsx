@@ -7,6 +7,7 @@ import B2 from './images/B2.jpg';
 import B3 from './images/B3.jpg';
 import B4 from './images/B4.jpg';
 import B5 from './images/B5.jpg';
+import LoginResponsable from '../Responsable/LoginResponsable';
 
 
 const TousLesLivres = () => {
@@ -53,6 +54,7 @@ const TousLesLivres = () => {
 
   return (
     <div className="container mt-5">
+      <LoginResponsable/>
       <h2 className="mb-4">Liste des Livres</h2>
       <Form className="mb-4">
         <Form.Group className="mb-3">

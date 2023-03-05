@@ -1,5 +1,5 @@
 import ServiceResponsable from "../../Services/ResponsableServices";
-import HeaderMaster from "../Master/HeaderMaster";
+import LoginResponsable from "./LoginResponsable";
 import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 
@@ -66,7 +66,7 @@ function ModificationResponsable(){
 
     return (
         <>
-        <HeaderMaster/>
+        <LoginResponsable/>
         <center>
             {displayImage()}
             <br/>

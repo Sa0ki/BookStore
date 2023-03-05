@@ -24,11 +24,13 @@ const checkCurrentUser = (req, res, next) => {
                 next()
             }  
             else{
-                let user = await Responsable.findById(decodedToken.id)
-                if(user != null)
-                    res.locals.user = user.email
+                let userResponsable = await Responsable.findById(decodedToken.id)
+
+                if(userResponsable != null)
+                    res.locals.user = userResponsable.email
                 else
                     res.locals.user = ""
+                    
                 next()
             }
         })
@@ -36,8 +38,7 @@ const checkCurrentUser = (req, res, next) => {
     else{
         res.locals.user = ""
         next()
-    }
-        
+    }    
 }
 
 module.exports = {requireAuth, checkCurrentUser}

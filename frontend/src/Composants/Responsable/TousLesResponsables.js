@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react"
 import {Link, useNavigate} from "react-router-dom"
 import ServiceResponsable from "../../Services/ResponsableServices"
-import HeaderMaster from "../Master/HeaderMaster"
+import LoginResponsable from "./LoginResponsable";
 import {Table, Button, Form} from 'react-bootstrap';
 
 //Css file for responsable
@@ -43,7 +43,7 @@ function TousLesResponsables(){
 
     return (
         <>
-        <HeaderMaster/>
+        <LoginResponsable/>
         
         <div className="container mt-5">
       <h2 className="mb-4">Liste des responsables</h2>
