@@ -77,7 +77,7 @@ function TousLesResponsables(){
               </td>
               <td>
               <Link to = {`/master/responsable/update/${r._id}`}><Button variant="primary" size="sm" className="me-2">Modifier</Button></Link>
-                <Button variant="danger" size="sm" onClick={()=>deleteResponsable(livre._id)}>
+                <Button variant="danger" size="sm" onClick={()=>deleteResponsable()}>
                   Supprimer
                 </Button>
               </td>
